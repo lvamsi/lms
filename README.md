@@ -73,3 +73,11 @@ http://localhost:8000/misc/getpublishers
 ```
 [{"PID":"1197","PNAME":"SSR ENTERPRISES","PLACE":"NOIDA"},{"PID":"1297","PNAME":"ARNOLD GROUP","PLACE":"BANGALORE"},{"PID":"1650739380","PNAME":"Oreilly","PLACE":"USA"}]
 ```
+
+```
+http://localhost:8000/members/1011/carddetails
+```
+```
+[{"MID":"1011","CID":"201","userid":"peterp","NAME":"PETERP","CARDSTATUS":"ACTIVE","CARDISSUEDATE":"01/01/2021","CARDEXPIRYDATE":"01/01/2025"}]
+```
+
