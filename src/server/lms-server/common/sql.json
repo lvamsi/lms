@@ -1,0 +1,12 @@
+{
+    "carddetails" : "SELECT MID, c.CID, userid, concat(FIRSTNAME,LASTNAME) as `NAME`,CARDSTATUS,CARDISSUEDATE,CARDEXPIRYDATE FROM lms.members m join lms.card c on m.CID=c.CID where MID=?;",
+    "checkedoutbooks" : "SELECT ebc.*,concat(e.FIRSTNAME,' ',e.LASTNAME) as `ISSUER_NAME`,b.BOOKTITLE,b.BOOKDESC,b.CATEGORY,b.AUTHORNAME,concat(e.FIRSTNAME,' ',e.LASTNAME) as `ISSUERNAME` FROM emp_book_card_relation ebc join employee e on ebc.EMPNO=e.EMPNO join card c on c.CID=ebc.CID join books b on ebc.ISBN = b.ISBN where ebc.CID=? and ebc.RETURNDATE is null;",
+    "search" : "select * from books b join publishers p on b.PID = p.PID where BOOKTITLE like ? or ISBN like ? or AUTHORNAME like ? or PNAME  like ?;",
+    "carddetails2" : "SELECT MID, c.CID, userid, concat(FIRSTNAME,' ',LASTNAME) as `NAME`,CARDSTATUS,CARDISSUEDATE,CARDEXPIRYDATE FROM lms.members m join lms.card c on m.CID=c.CID where c.CID=?;",
+    "issuebook" : "insert into emp_book_card_relation (EMPNO,CID,ISBN,ISSUEDATE,RETURNDATE) value(?,?,?,?,?);",
+    "overduebooks": "SELECT ebc.*,concat(m.FIRSTNAME,' ',m.LASTNAME) as 'BORROWER_NAME',concat(e.FIRSTNAME,' ',e.LASTNAME) as `ISSUER_NAME`,b.BOOKTITLE,b.BOOKDESC,b.CATEGORY,b.AUTHORNAME FROM emp_book_card_relation ebc join employee e on ebc.EMPNO=e.EMPNO join card c on c.CID=ebc.CID join books b on ebc.ISBN = b.ISBN join members m on  m.CID=c.CID where ebc.RETURNDATE is null and datediff(curdate(),str_to_date(ISSUEDATE, '%d/%m/%Y')) >10;",
+    "returnbook" : "update lms.emp_book_card_relation set RETURNDATE=date_format(curdate(),'%d/%m/%Y') where EMPNO=? and CID=? and ISBN=?;",
+    "addpublisher" : "insert into publishers(PID,PNAME,PLACE) values(?,?,?);",
+    "getpublishers": "SELECT * FROM publishers;",
+    "addbook":"insert into books (ISBN,PID,BOOKTITLE,BOOKDESC,CATEGORY,PUBLISHERID,PERDAYCHARGE,AUTHORNAME) values(?,?,?,?,?,?,?,?);"
+}
